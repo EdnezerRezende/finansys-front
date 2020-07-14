@@ -59,7 +59,6 @@ export class CategoryService {
   }
 
   private jsonDataToCategory(jsonData: any): Category {
-    jsonData.forEach(element => categories.push(element as Category));
     return jsonData as Category;
   }
 
