@@ -38,6 +38,50 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked() {
     this.setPageTitle();
   }
+
+  submitForm(){
+    this.submittingForm = true;
+    if (this.currentAction === 'new'){
+      this.createCategory();
+    }else {
+      this.updateCategory();
+    }
+  }
+
+  createCategory(){
+    const category = Object.assign(new Category(), this.categoryForm.value);
+    this.categoryService.create(category).subscribe(
+      categoria => this.actionsForSuccess(categoria),
+      error => this.actionsForError(error)
+    );
+  }
+
+  private actionsForSuccess(category: Category){
+    toastr.success('Solicitação processada com sucesso!');
+    this.router.navigateByUrl('categories', {skipLocationChange: true}).then(
+      () => this.router.navigate(['categories', category.id, 'edit'])
+    );
+  }
+
+  private actionsForError(error){
+    toastr.error('Ocorreu um erro ao processar a sua Solicitação');
+    this.submittingForm = false;
+
+    if (error.status === 422 ){
+      this.serverErrorMessages = JSON.parse(error._body).errors;
+    } else{
+      this.serverErrorMessages = ['Falha na Comunicação com o Servidor, por favor, tente mais tarde!'];
+    }
+  }
+
+  private updateCategory(){
+    const category = Object.assign(new Category(), this.categoryForm.value);
+    this.categoryService.update(category).subscribe(
+      categoria => this.actionsForSuccess(categoria),
+      error => this.actionsForError(error)
+    );
+  }
+
   private setPageTitle() {
     if (this.currentAction === 'new'){
       this.pageTitle = 'Cadastro de Nova Categoria';
