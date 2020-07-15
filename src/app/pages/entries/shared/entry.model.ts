@@ -5,7 +5,7 @@ export class Entry {
         public id?: number,
         public name?: string,
         public description?: string,
-        public type?: number,
+        public type?: string,
         public amount?: string,
         public date?: string,
         public paid?: boolean,
