@@ -16,7 +16,7 @@ export class EntryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.entryService.getAll().subscribe(
-      resposta => this.entries = resposta,
+      resposta => this.entries = resposta.sort((a, b) => b.id - a.id),
       error => alert('Erro ao carregar a Lista')
     );
   }

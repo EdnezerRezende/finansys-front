@@ -31,7 +31,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     thousandsSeparator: '' ,
     padFractionalZeros: true,
     normalizeZeros: true,
-    radix: ' , '
+    radix: ','
   };
 
   ptBR = {
@@ -63,7 +63,8 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     week: 'Semana' ,
     day: 'Dia' ,
     allDayText : 'Todo Dia'
-  }
+  };
+
   constructor(
     private entryService: EntryService,
     private route: ActivatedRoute,
