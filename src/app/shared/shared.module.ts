@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { FormFieldErrorComponent } from './components/form-field-error/form-field-error.component';
 import { ServerErrorMessagesComponent } from './components/server-error-messages/server-error-messages.component';
+import { ActionsLinksTableComponent } from './components/actions-links-table/actions-links-table.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -13,11 +15,13 @@ import { ServerErrorMessagesComponent } from './components/server-error-messages
     PageHeaderComponent,
     FormFieldErrorComponent,
     ServerErrorMessagesComponent,
+    ActionsLinksTableComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ConfirmDialogModule
   ],
   exports: [
     CommonModule,
@@ -26,6 +30,8 @@ import { ServerErrorMessagesComponent } from './components/server-error-messages
     PageHeaderComponent,
     FormFieldErrorComponent,
     ServerErrorMessagesComponent,
+    ActionsLinksTableComponent,
+    ConfirmDialogModule
   ]
 })
 export class SharedModule { }

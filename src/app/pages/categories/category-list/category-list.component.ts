@@ -2,16 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
 import { BaseResourceListComponent } from 'src/app/shared/components/base-resource-list/base-resource-list.component';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.css']
+  styleUrls: ['./category-list.component.css'],
+  providers: [ConfirmationService]
 })
 export class CategoryListComponent extends BaseResourceListComponent<Category> {
 
-  constructor(protected categoryService: CategoryService) {
-    super(categoryService);
+  constructor(
+    protected categoryService: CategoryService,
+    protected confirmationService: ConfirmationService
+  ) {
+    super(categoryService, confirmationService);
   }
 
 }

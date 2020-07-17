@@ -1,3 +1,4 @@
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 <app-bread-crumb [itens]="[{text: 'Lançamentos'}]" ></app-bread-crumb>
 
 <app-page-header 
@@ -35,8 +36,10 @@
                 <span class="badge badge-light">{{entry.paidText}}</span>
             </td>
             <td class="text-center">
-                <a [routerLink]="[entry.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-                <a (click)="deleteResource(entry)" class="btn btn-outline-info btn-sm">Excluir</a>
+                <app-actions-links-table 
+                    [resourceComp]="entry"
+                    (deleteResourceFn)="deleteResource($event)"
+                ></app-actions-links-table>
             </td>
         </tr>
     </tbody>

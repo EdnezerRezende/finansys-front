@@ -1,3 +1,4 @@
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 <app-bread-crumb [itens]="[{text: 'Categorias'}]" ></app-bread-crumb>
 
 <app-page-header 
@@ -21,8 +22,10 @@
                 <strong>{{category.name}}</strong><br><small>{{category.description}}</small>
             </td>            
             <td >
-                <a [routerLink]="[category.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-                <a (click)="deleteResource(category)" class="btn btn-outline-info btn-sm">Excluir</a>
+                <app-actions-links-table 
+                    [resourceComp]="category"
+                    (deleteResourceFn)="deleteResource($event)"
+                ></app-actions-links-table>
             </td>
         </tr>
     </tbody>
