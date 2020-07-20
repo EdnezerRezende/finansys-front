@@ -2,6 +2,7 @@
 
 <app-page-header 
     [pageTitle]="pageTitle"
+    [showButton]=false
 >
 </app-page-header>
 
@@ -15,7 +16,7 @@
                 <label for="month"> Mês</label>
                 <select #month name="month" id="month" class="form-control">
                     <option value="">Selecione um mês</option>
-                    <option *ngFor="let mes of mesesSelection" value="mes">{{mes}}</option>
+                    <option *ngFor="let mes of mesesSelection; let i = index" [value]="i+1">{{mes}}</option>
                     
                 </select>
             </div>
@@ -23,7 +24,7 @@
                 <label for="year">Ano</label>
                 <select #year name="year" id="year" class="form-control">
                     <option value="">Selecione um ano</option>
-                    <option *ngFor="let ano of anosSelection" value="ano">{{ano}}</option>
+                    <option *ngFor="let ano of anosSelection" [value]="ano">{{ano}}</option>
                 </select>
             </div>
 
@@ -44,7 +45,7 @@
             Total de Receitas
         </div>
         <div class="card-body">
-            1500
+            {{revenueTotal}}
         </div>
     </div>
 
@@ -53,7 +54,7 @@
             Total de Despesas
         </div>
         <div class="card-body">
-            10
+            {{expenseTotal}}
         </div>
     </div>
 
@@ -62,7 +63,7 @@
             Saldo
         </div>
         <div class="card-body">
-            1490
+            {{balance}}
         </div>
     </div>
     
@@ -70,9 +71,9 @@
 <hr>
 <div class="row mt-5 mb-4">
     <div class="col-md-6">
-        Gráfico de Receitas
+        <p-chart type="bar" [data]="revenueChartData" [options]="chartOptions"></p-chart>
     </div>
     <div class="col-md-6">
-        Gráfico de Despesas
+        <p-chart type="bar" [data]="expenseChartData" [options]="chartOptions"></p-chart>
     </div>
 </div>
