@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase),
     RouterModule,
   ],
   exports: [

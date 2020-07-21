@@ -8,6 +8,7 @@ import { FormFieldErrorComponent } from './components/form-field-error/form-fiel
 import { ServerErrorMessagesComponent } from './components/server-error-messages/server-error-messages.component';
 import { ActionsLinksTableComponent } from './components/actions-links-table/actions-links-table.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { SelectMonthYearComponent } from './components/select-month-year/select-month-year.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     FormFieldErrorComponent,
     ServerErrorMessagesComponent,
     ActionsLinksTableComponent,
+    SelectMonthYearComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     FormFieldErrorComponent,
     ServerErrorMessagesComponent,
     ActionsLinksTableComponent,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    SelectMonthYearComponent,
   ]
 })
 export class SharedModule { }

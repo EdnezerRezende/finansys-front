@@ -6,6 +6,7 @@ import { EntryService } from '../shared/entry.service';
 import { Category } from '../../categories/shared/category.model';
 import { CategoryService } from '../../categories/shared/category.service';
 import { BaseResourceFormComponent } from 'src/app/shared/components/base-resource.form/base-resource-form.component';
+import { TypeEnum } from '../shared/type.enum';
 
 @Component({
   selector: 'app-entry-form' ,
@@ -15,6 +16,8 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 export class EntryFormComponent extends BaseResourceFormComponent<Entry> implements OnInit {
 
   categories: Array<Category>;
+
+  typeOptions: Array<TypeEnum>;
 
   imaskConfig = {
     mask: Number,
@@ -36,6 +39,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
   ngOnInit(): void {
     super.ngOnInit();
     this.loadCategories();
+    this.loadTypesEnum();
   }
 
   protected creationPageTitle(): string{
@@ -52,7 +56,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
       id: [null],
       name: [null, [Validators.required, Validators.minLength(2)]],
       description: [null],
-      type: ['expense', [Validators.required]],
+      type: [1, [Validators.required]],
       amount: [null, [Validators.required]],
       date: [null, [Validators.required]],
       paid: [false, [Validators.required]],
@@ -66,14 +70,22 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
     );
   }
 
-  get typeOptions(): Array<any> {
-    return Object.entries(Entry.types).map(
-      ([value, text]) => {
-        return {
-          text,
-          value
-        };
-      }
-    );
+  public loadTypesEnum(){
+    this.entryService.getAllTypesEnum().subscribe(types => this.typeOptions = types);
+  }
+  // get typeOptions(): Array<any> {
+  //   return this.entryService.getAllTypesEnum().subscribe(types => types);
+  //   // return Object.entries(Entry.types).map(
+  //   //   ([value, text]) => {
+  //   //     return {
+  //   //       text,
+  //   //       value
+  //   //     };
+  //   //   }
+  //   // );
+  // }
+
+  compareFn( optionOne, optionTwo ): boolean {
+    return optionOne.value === optionTwo;
   }
 }

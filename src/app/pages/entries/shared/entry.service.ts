@@ -16,6 +16,13 @@ export class EntryService extends BaseResourceService<Entry> {
     super('api/entries', injector, Entry.fromJson);
   }
 
+  getAllTypesEnum(){
+    return this.http.get(this.apiPath + '/typesEnum').pipe(
+      map(this.jsonDataToResources.bind(this)),
+      catchError(this.handleError)
+    );
+  }
+
   create(entry: Entry): Observable<Entry>{
     return this.setCategoryAndSendToServer(entry, super.create.bind(this));
   }

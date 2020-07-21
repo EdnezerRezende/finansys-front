@@ -6,6 +6,7 @@ import { Entry } from '../../entries/shared/entry.model';
 import { EntryService } from '../../entries/shared/entry.service';
 import { CategoryService } from '../../categories/shared/category.service';
 import currencyFormatter from 'currency-formatter';
+import { DateReturnModel } from 'src/app/shared/models/date-return.model';
 
 @Component({
   selector: 'app-reports',
@@ -16,6 +17,8 @@ export class ReportsComponent implements OnInit {
   pageTitle = 'Relatório de Receitas e Despesas';
   mesesSelection = Object.values(MonthEnum);
   anosSelection = new Array<number>();
+
+  buttonLabel = 'Gerar Relatórios';
 
   expenseTotal: any = 0;
   revenueTotal: any = 0;
@@ -37,39 +40,19 @@ export class ReportsComponent implements OnInit {
   categories: Category[] = [];
   entries: Entry[] = [];
 
-  @ViewChild('month', {static: false}) month: ElementRef = null;
-  @ViewChild('year', {static: false}) year: ElementRef = null;
-
   constructor(
     private entryService: EntryService,
     private categoryService: CategoryService,
   ) { }
 
   ngOnInit(): void {
-    this.gerarAnos();
-
-    this.categoryService.getAll()
+     this.categoryService.getAll()
       .subscribe( categories => this.categories = categories);
   }
 
-  gerarAnos(){
-    const anoAntiga = Number(moment().subtract(3, 'year').format('yyyy'));
-    const anoAtual = Number(moment().add(4, 'year').format('yyyy'));
-    for (let i = anoAntiga; i < anoAtual; i++){
-      this.anosSelection.push(i);
-    }
-  }
-
-  generateReports(){
-    const month = this.month.nativeElement.value;
-    const year = this.year.nativeElement.value;
-
-    if ( !month || !year ){
-      alert('Necessário informar o Mês e o Ano para gerar os Relatórios!');
-    }else{
-      this.entryService.getByMonthAndYear(Number(month), Number(year))
-        .subscribe(this.setValues.bind(this));
-    }
+  generateReports(dto: DateReturnModel){
+    this.entryService.getByMonthAndYear(dto.month, dto.year)
+      .subscribe(this.setValues.bind(this));
   }
 
   private setValues(entries: Entry[]){
@@ -98,8 +81,8 @@ export class ReportsComponent implements OnInit {
   }
 
   private setChartData(){
-    this.revenueChartData = this.getChartData('revenue', 'Gráfico de Receitas', '#9CCC65');
-    this.expenseChartData = this.getChartData('expense', 'Gráfico de Despesas', '#e03131');
+    this.revenueChartData = this.getChartData('2', 'Gráfico de Receitas', '#9CCC65');
+    this.expenseChartData = this.getChartData('1', 'Gráfico de Despesas', '#e03131');
   }
 
   private getChartData(entryType: string, title: string, color: string){
@@ -128,7 +111,6 @@ export class ReportsComponent implements OnInit {
       datasets: [{
         label: title,
         backgroundColor: color,
-        // data: [6544, 54545]
         data: chartData.map(item => item.totalAmount)
       }]
     };

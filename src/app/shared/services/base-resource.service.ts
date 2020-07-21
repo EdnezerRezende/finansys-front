@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Injector } from '@angular/core';
+import { API_CONFIG } from 'src/app/core/services/config/api.config';
 
 
 export abstract class BaseResourceService<T extends BaseResourceModel> {
@@ -16,6 +17,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         protected jsonDataToResourceFn: (jsonData) => T
     ) {
         this.http = injector.get(HttpClient);
+        this.apiPath = API_CONFIG.baseUrl + '/' + this.apiPath;
      }
 
     getAll(): Observable<T[]>{
@@ -41,7 +43,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     }
 
     update(resource: T): Observable<T> {
-        const url = `${this.apiPath}/${resource.id}`;
+        const url = `${this.apiPath}`;
         return this.http.put(url, resource).pipe(
             map(() => resource),
             catchError(this.handleError)
