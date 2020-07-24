@@ -109,6 +109,22 @@
                     <input type="text" class="form-control" id="description"  formControlName="description">
                 </div>
             </div>
+
+            <div class="form-row">
+                
+                <div class="form-group col-md-2">
+                    <label for="quantidadeRepeticoes" >
+                        Quantidade de Meses
+                    </label>
+                    <div class="input-group btn-group" >
+                        <p-inputNumber formControlName="quantidadeRepeticoes"></p-inputNumber>
+                    </div>
+                    <app-form-field-error
+                        [formControlComponent]="resourceForm.get('quantidadeRepeticoes')"
+                    ></app-form-field-error>
+                </div>
+               
+            </div>
         </div>
     </div>
     <app-server-error-messages [serverErrorMessages]="serverErrorMessages"></app-server-error-messages>

@@ -9,6 +9,9 @@
 >
 </app-page-header>
 
+<app-select-month-year [buttonLabel]="buttonLabel" (returnButtonClick)="getListAll($event)" >
+</app-select-month-year>
+
 <table class="table hover">
     <thead>
         <tr class="bg-primary text-light">
@@ -39,6 +42,8 @@
                 <app-actions-links-table 
                     [resourceComp]="entry"
                     (deleteResourceFn)="deleteResource($event)"
+                    [allowPaid]="true"
+                    (paidReturn)="paid($event)"
                 ></app-actions-links-table>
             </td>
         </tr>

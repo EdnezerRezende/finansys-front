@@ -4,3 +4,6 @@
 <a (click)="deleteResource(resourceComp)" class="btn btn-outline-info btn-sm">
     <i class="pi pi-trash"></i>
 </a>
+<a (click)="paid(resourceComp)" class="btn btn-outline-info btn-sm" *ngIf="allowPaid && !resourceComp.paid">
+    <i class="pi pi-check"></i>
+</a>

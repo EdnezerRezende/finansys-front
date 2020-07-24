@@ -6,6 +6,7 @@ import { Entry } from './entry.model';
 import { CategoryService } from '../../categories/shared/category.service';
 import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
 import * as moment from 'moment';
+import { DateReturnModel } from 'src/app/shared/models/date-return.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,16 @@ export class EntryService extends BaseResourceService<Entry> {
     );
   }
 
+  getListAllByMonthAndYear(dto: DateReturnModel){
+    const dateStart = moment().date(1).month(dto.month - 1).year(dto.year).format('DD-MM-YYYY');
+    const dateFinish = moment().month(dto.month - 1).year(dto.year).endOf('month').format('DD-MM-YYYY');
+
+    return this.http.get(this.apiPath + `/dateStart/${dateStart}/dateFinish/${dateFinish}`).pipe(
+      map(this.jsonDataToResources.bind(this)),
+      catchError(this.handleError)
+    );
+  }
+
   create(entry: Entry): Observable<Entry>{
     return this.setCategoryAndSendToServer(entry, super.create.bind(this));
   }
@@ -31,7 +42,7 @@ export class EntryService extends BaseResourceService<Entry> {
     return this.setCategoryAndSendToServer(entry, super.update.bind(this));
   }
 
-  private setCategoryAndSendToServer(entry: Entry, sendFn: any): Observable<Entry>{
+  protected setCategoryAndSendToServer(entry: Entry, sendFn: any): Observable<Entry>{
     return this.categoryService.getById(entry.categoryId).pipe(
       flatMap(category => {
         entry.category = category;
@@ -57,5 +68,12 @@ export class EntryService extends BaseResourceService<Entry> {
         return entry;
       }
     });
+  }
+
+  public paidEntry(entry: Entry){
+    return this.http.put(this.apiPath + '/paid', entry).pipe(
+      map(this.jsonDataToResource.bind(this)),
+      catchError(this.handleError)
+    );
   }
 }

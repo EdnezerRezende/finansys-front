@@ -7,6 +7,7 @@ import { InMemoryDatabase } from '../in-memory-database';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -17,12 +18,15 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDatabase),
     RouterModule,
+    NgxSpinnerModule
   ],
   exports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     NavbarComponent,
+    NgxSpinnerModule
+
   ]
 })
 export class CoreModule { }

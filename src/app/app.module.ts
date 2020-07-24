@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpConfigInterceptor } from './core/guards/httpConfig.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,19 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CoreModule,
     AppRoutingModule,
     ConfirmDialogModule,
+    NgxSpinnerModule
   ],
   exports: [
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfigInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

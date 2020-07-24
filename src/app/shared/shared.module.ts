@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
 import { RouterModule } from '@angular/router';
+
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { FormFieldErrorComponent } from './components/form-field-error/form-field-error.component';
 import { ServerErrorMessagesComponent } from './components/server-error-messages/server-error-messages.component';
 import { ActionsLinksTableComponent } from './components/actions-links-table/actions-links-table.component';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { SelectMonthYearComponent } from './components/select-month-year/select-month-year.component';
+
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { SelectMonthYearComponent } from './components/select-month-year/select-
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    InputNumberModule
   ],
   exports: [
     CommonModule,
@@ -35,6 +39,7 @@ import { SelectMonthYearComponent } from './components/select-month-year/select-
     ActionsLinksTableComponent,
     ConfirmDialogModule,
     SelectMonthYearComponent,
+    InputNumberModule
   ]
 })
 export class SharedModule { }

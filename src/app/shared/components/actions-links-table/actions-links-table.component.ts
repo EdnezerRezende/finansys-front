@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-actions-links-table',
@@ -7,9 +8,10 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 })
 export class ActionsLinksTableComponent implements OnInit {
   @Output() deleteResourceFn = new EventEmitter();
+  @Output() paidReturn = new EventEmitter();
+  @Input() allowPaid = false;
   @Input() resourceComp: any;
-
-  constructor() { }
+  constructor(protected confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
   }
@@ -18,4 +20,14 @@ export class ActionsLinksTableComponent implements OnInit {
     this.deleteResourceFn.emit(resource);
   }
 
+  public paid(resource){
+    this.confirmationService.confirm({
+      message: 'Efetuou o Pagamento?',
+      header: 'Confirmação',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.paidReturn.emit(resource);
+      }
+    });
+  }
 }
