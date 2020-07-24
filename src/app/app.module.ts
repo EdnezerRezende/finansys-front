@@ -8,6 +8,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpConfigInterceptor } from './core/guards/httpConfig.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CoreModule,
     AppRoutingModule,
     ConfirmDialogModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   exports: [
     ConfirmDialogModule,

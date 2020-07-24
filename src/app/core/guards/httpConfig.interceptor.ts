@@ -43,6 +43,10 @@ import { FieldMessage } from 'src/app/shared/models/field-message';
     private handleAuthError(err: HttpErrorResponse): Observable<any> {
       const errorObj = err;
       switch (errorObj.status) {
+        case 400:
+          this.handle400(errorObj);
+          break;
+
         case 401:
           this.handle401();
           break;
@@ -69,6 +73,9 @@ import { FieldMessage } from 'src/app/shared/models/field-message';
       return throwError(err);
   }
 
+  handle400(errorObj){
+    toastr.error(errorObj.error);
+  }
   handle403() {
     // this.storage.setLocalUser(null);
   }
@@ -84,7 +91,7 @@ import { FieldMessage } from 'src/app/shared/models/field-message';
   }
 
   handle422(errorObj) {
-    toastr.error(`Erro de Validação: ` + this.listErrors(errorObj.errors));
+    toastr.error(`'Falha na Comunicação com o Servidor, por favor, tente mais tarde!`);
   }
 
   handle500(errorObj) {
