@@ -1,6 +1,7 @@
-<button *ngIf="showButton" (click)="addToHomeScreen()"></button>
+
 <app-navbar></app-navbar>
 <ngx-spinner></ngx-spinner>
 <div class="container">
+  <button *ngIf="showButton" (click)="addToHomeScreen()" type="button"  class="btn btn-primary">+</button>
   <router-outlet></router-outlet>
 </div>
