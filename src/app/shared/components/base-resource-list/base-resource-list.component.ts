@@ -21,7 +21,7 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
 
   protected getList() {
     this.resourceService.getAll().subscribe(
-      resposta => this.resources = resposta.sort((a, b) => b.id - a.id),
+      resposta => this.resources = resposta,
       error => alert('Erro ao carregar a Lista')
     );
   }
