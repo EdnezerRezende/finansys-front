@@ -68,7 +68,7 @@ export class ReportsComponent implements OnInit {
     this.revenueTotal = 0;
 
     this.entries.forEach(entry => {
-      if (entry.type === 'revenue'){
+      if (entry.type === '2'){
         revenueTotal += currencyFormatter.unformat(entry.amount, {code: 'BRL'});
       }else{
         expenseTotal += currencyFormatter.unformat(entry.amount, {code: 'BRL'});

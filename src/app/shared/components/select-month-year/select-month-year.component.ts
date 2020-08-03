@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewChild, ElementRef, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, ElementRef, EventEmitter, Input, Renderer2 } from '@angular/core';
 import { MonthEnum } from '../../models/month.enum';
 
 import * as moment from 'moment';
@@ -18,13 +18,18 @@ export class SelectMonthYearComponent implements OnInit {
   @Output() returnButtonClick = new EventEmitter();
   @Output() returnYear = new EventEmitter();
 
-  @ViewChild('month', {static: false}) month: ElementRef = null;
-  @ViewChild('year', {static: false}) year: ElementRef = null;
+  @ViewChild('month') month: ElementRef;
+  @ViewChild('year') year: ElementRef;
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.gerarAnos();
+    setTimeout(() => {
+      this.renderer.setProperty(this.month.nativeElement, 'value', moment().month() + 1 );
+      this.renderer.setProperty(this.year.nativeElement, 'value', moment().format('yyyy') );
+      this.buttonClick();
+    }, 1000);
   }
 
   gerarAnos(){
