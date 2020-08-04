@@ -1,9 +1,12 @@
-<a [routerLink]="[resourceComp.id, 'edit']" class="btn btn-outline-info btn-sm mr-2 ">
+<a [routerLink]="[resourceComp.id, 'edit']" class="btn btn-outline-info btn-sm mr-2 "
+data-toggle="tooltip" data-placement="right" title="Editar">
     <i class="pi pi-pencil"></i>
 </a>
-<a (click)="deleteResource(resourceComp)" class="btn btn-outline-info btn-sm">
+<a (click)="deleteResource(resourceComp)" class="btn btn-outline-info btn-sm mr-2"
+data-toggle="tooltip" data-placement="right" title="Deletar">
     <i class="pi pi-trash"></i>
 </a>
-<a (click)="paid(resourceComp)" class="btn btn-outline-info btn-sm" *ngIf="allowPaid && !resourceComp.paid">
+<a (click)="paid(resourceComp)" class="btn btn-outline-info btn-sm" *ngIf="allowPaid && !resourceComp.paid"
+    data-toggle="tooltip" data-placement="right" title="Efetuar pagamento">
     <i class="pi pi-check"></i>
 </a>
