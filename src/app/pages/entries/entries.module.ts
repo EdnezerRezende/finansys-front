@@ -7,6 +7,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { IMaskModule } from 'angular-imask';
 import { SharedModule } from 'src/app/shared/shared.module';
 import {TableModule} from 'primeng/table';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [EntryListComponent, EntryFormComponent],
@@ -15,7 +16,8 @@ import {TableModule} from 'primeng/table';
     EntriesRoutingModule,
     CalendarModule,
     IMaskModule,
-    TableModule
+    TableModule,
+    DropdownModule
   ]
 })
 export class EntriesModule { }
