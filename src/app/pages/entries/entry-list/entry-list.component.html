@@ -12,7 +12,7 @@
 <app-select-month-year [buttonLabel]="buttonLabel" (returnButtonClick)="getListAll($event)" >
 </app-select-month-year>
 
-<p-table #dt [value]="resources" sortMode="multiple" class="table hover" 
+<p-table #dt [value]="resources" sortMode="multiple" class="table hover mb-5" 
  [filterDelay]="0" [globalFilterFields]="['name','category.name']">
     <ng-template pTemplate="header" >
         <tr class="bg-primary text-light">

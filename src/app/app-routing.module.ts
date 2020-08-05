@@ -6,7 +6,7 @@ import { ReportsModule } from './pages/reports/reports.module';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'reports', pathMatch: 'full'},
+  { path: '', redirectTo: 'entries', pathMatch: 'full'},
   { path: 'reports', loadChildren: './pages/reports/reports.module#ReportsModule' },
   { path: 'categories', loadChildren: './pages/categories/categories.module#CategoriesModule' },
   { path: 'entries', loadChildren: './pages/entries/entries.module#EntriesModule' },
@@ -14,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), ReportsModule, CategoriesModule, EntriesModule],
+  imports: [RouterModule.forRoot(routes), EntriesModule, ReportsModule, CategoriesModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
