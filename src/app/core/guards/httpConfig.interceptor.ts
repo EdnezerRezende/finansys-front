@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import toastr from 'toastr';
 import { FieldMessage } from 'src/app/shared/models/field-message';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
   export class HttpConfigInterceptor implements HttpInterceptor {
@@ -20,8 +21,9 @@ import { FieldMessage } from 'src/app/shared/models/field-message';
 
     constructor(
       public spinner: NgxSpinnerService,
-      private router: Router
-      ) { }
+      private router: Router,
+      private authenticationService: AuthenticationService
+    ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       this.spinner.show();
@@ -88,6 +90,8 @@ import { FieldMessage } from 'src/app/shared/models/field-message';
   }
   handle401() {
     toastr.error(`Falha de Autenticação, tente novamente!`);
+    this.authenticationService.logout();
+    location.reload(true);
   }
 
   handle422(errorObj) {
