@@ -31,7 +31,14 @@
                     <option *ngFor="let option of categories" [value]="option.id">{{option.name}}</option>
                 </select>
             </th>
-            <th></th>
+            <th>
+                <select style="max-width: -webkit-fill-available;" name="status" id="status" class="form-control" 
+                    (change)="selectStatus($event.target)">
+                    <option value="">Selecione uma Categoria</option>
+                    <option [value]="true">Pago</option>
+                    <option [value]="false">Pendente</option>
+                </select>
+            </th>
             <th></th>
         </tr>
     </ng-template>  

@@ -96,4 +96,8 @@ export class EntryListComponent extends BaseResourceListComponent<Entry> impleme
   selectCategory(event) {
     this.table.filter(event.value, 'category.id', 'equals');
   }
+
+  selectStatus(event) {
+    this.table.filter(event.value, 'paid', 'equals');
+  }
 }

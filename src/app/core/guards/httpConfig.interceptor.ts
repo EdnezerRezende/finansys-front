@@ -30,6 +30,7 @@ import { AuthenticationService } from '../services/authentication.service';
 
       this.count++;
 
+      //request.headers.append('Authorization', this.authenticationService.currentUserValue.token);
       return next.handle(request)
         .pipe( tap (
           event => console.log(event),
@@ -90,8 +91,7 @@ import { AuthenticationService } from '../services/authentication.service';
   }
   handle401() {
     toastr.error(`Falha de Autenticação, tente novamente!`);
-    this.authenticationService.logout();
-    location.reload(true);
+    //this.authenticationService.logout();
   }
 
   handle422(errorObj) {

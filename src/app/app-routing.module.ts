@@ -9,7 +9,7 @@ import { LoginModule } from './pages/login/login.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'entries', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginModule' },
   { path: 'reports', loadChildren: './pages/reports/reports.module#ReportsModule' },
   { path: 'categories', loadChildren: './pages/categories/categories.module#CategoriesModule' },
   { path: 'entries', loadChildren: './pages/entries/entries.module#EntriesModule' },

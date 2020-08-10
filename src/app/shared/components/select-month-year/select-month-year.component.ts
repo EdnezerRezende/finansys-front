@@ -28,7 +28,9 @@ export class SelectMonthYearComponent implements OnInit {
     setTimeout(() => {
       this.renderer.setProperty(this.month.nativeElement, 'value', moment().month() + 1 );
       this.renderer.setProperty(this.year.nativeElement, 'value', moment().format('yyyy') );
-      this.buttonClick();
+      setTimeout(() => {
+        this.buttonClick();
+      }, 1000);
     }, 1000);
   }
 
