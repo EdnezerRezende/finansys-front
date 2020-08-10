@@ -1,4 +1,7 @@
 import { Component, HostListener } from '@angular/core';
+import { User } from './core/model/user';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './core/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +12,20 @@ export class AppComponent {
   title = 'finansys';
   deferredPrompt: any;
   showButton = false;
+
+  currentUser: User;
+
+  constructor(
+      private router: Router,
+      private authenticationService: AuthenticationService
+  ) {
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  logout() {
+      this.authenticationService.logout();
+      this.router.navigate(['/login']);
+  }
 
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e) {

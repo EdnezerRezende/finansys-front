@@ -10,6 +10,8 @@ import { HttpConfigInterceptor } from './core/guards/httpConfig.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './pages/login/login.component';
+import { JwtInterceptor } from './core/services/helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { environment } from '../environments/environment';
     NgxSpinnerModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor,

@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="d-flex justify-content-center h-100 row">
+		<div class="card mt-5"  >
+			<div class="card-header ml-5">
+				<div class="col-6 ml-5">
+					<div class="media text-center    ml-2" styles="max-width: 50%;  height: auto;">
+						<img src="'../../../../../assets/img/logo_financeiro.png" class="img-fluid rounded-circle mx-auto d-block"  alt="Logo">
+			
+					</div>
+				</div>
+				
+			</div>
+			<div class="card-body">
+				<form [formGroup]="loginForm">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="pi pi-user"></i></span>
+						</div>
+						<input type="text" class="form-control" formControlName="username" placeholder="Usuário">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="pi pi-lock"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="Senha"  formControlName="password">
+					</div>
+			<!-- 		<div class="row align-items-center remember">
+						<input type="checkbox">Remember Me
+			 		</div>-->
+					<div class="form-group">
+						<input type="submit" (click)="onSubmit()" value="Login" class="btn float-right login_btn">
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+</div>
