@@ -8,6 +8,8 @@ import { switchMap } from 'rxjs/operators';
 
 import toastr from 'toastr';
 import { BaseResourceService } from '../../services/base-resource.service';
+import { Entry } from 'src/app/pages/entries/shared/entry.model';
+import * as moment from 'moment';
 
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
 
@@ -144,6 +146,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
       ).subscribe(
         (resource) => {
           this.resource = resource;
+          if (this.resource instanceof Entry){
+            this.resource.date = moment(this.resource.date, 'DD-MM-YYYY').toDate();
+          }
           this.resourceForm.patchValue(resource);
         }, error => alert('Ocorreu um erro no servidor, tente mais tarde')
       );
